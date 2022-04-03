@@ -67,7 +67,7 @@
             rename(binary_path, CONCAT(binary_path, ".old")); \
             CMD("cc", source_path, "-o", binary_path); \
             echo_cmd(argv); \
-            nobuild_exec(argv); \
+            execv(argv[0], argv); \
         } \
     } while (false)
 
