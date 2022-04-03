@@ -10,7 +10,7 @@ const char* sources[] = {
 
 #define CFLAGS "-Wall", "-Wextra", "-Wpedantic", "-std=c99"
 
-int main(void) {
+int main(int argc, char** argv) {
     MKDIRS("build", "obj");
     const char** objects = malloc(sizeof(char*) * (sizeof sources / sizeof *sources + 1));
     size_t i = 0;
@@ -21,7 +21,12 @@ int main(void) {
     });
     objects[i] = NULL;
     MKDIRS("build", "bin");
-    char** argv = collect_args("vpvvv", "cc", objects, "-lm", "-o", PATH("build", "bin", "wang"));
-    echo_cmd(argv);
-    nobuild_exec(argv);
+    char** final_cmd =
+            collect_args("vpvvv", "cc", objects, "-lm", "-o", PATH("build", "bin", "wang"));
+    echo_cmd(final_cmd);
+    nobuild_exec(final_cmd);
+
+    if (argc > 1 && strcmp(argv[1], "run") == 0) {
+        CMD(PATH("build", "bin", "wang"));
+    }
 }
