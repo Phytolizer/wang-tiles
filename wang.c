@@ -105,7 +105,7 @@ rgba32_t atlas[ATLAS_WIDTH_PX * ATLAS_HEIGHT_PX];
 int main(void) {
     const char* output_file_path = "output.png";
     for (bltr_t bltr = 0; bltr < 16; bltr++) {
-        printf("Generating god seed %2" PRIu8 "...\n", bltr);
+        printf("Generating god seed %3.0f%%...\n", (float)bltr / 15.0f * 100.0f);
         size_t row = (bltr / ATLAS_WIDTH_TL) * TILE_HEIGHT_PX;
         size_t col = (bltr % ATLAS_WIDTH_TL) * TILE_WIDTH_PX;
 
