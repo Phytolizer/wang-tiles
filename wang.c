@@ -83,10 +83,6 @@ rgb_t wang(bltr_t bltr, uv_t uv) {
     return result;
 }
 
-rgb_t wang_0000(uv_t uv) {
-    return wang(0x00, uv);
-}
-
 void generate_tile32(uint32_t* pixels, size_t width, size_t height, size_t stride, bltr_t bltr,
         frag_shader_t* shader) {
     for (size_t y = 0; y < height; y++) {
