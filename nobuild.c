@@ -8,7 +8,7 @@ const char* sources[] = {
         "wang",
 };
 
-#define CFLAGS "-Wall", "-Wextra", "-Wpedantic", "-std=c99"
+#define CFLAGS "-O2", "-Wall", "-Wextra", "-Wpedantic", "-std=c99"
 
 int main(int argc, char** argv) {
     REBUILD_SELF(argc, argv);
