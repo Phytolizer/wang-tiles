@@ -1,0 +1,15 @@
+[
+    {
+        "arguments": [
+            "/usr/bin/gcc",
+            "-c",
+            "-std=c99",
+            "-o",
+            "nobuild",
+            "nobuild.c"
+        ],
+        "directory": "/home/kyle/Documents/wang-tiles",
+        "file": "/home/kyle/Documents/wang-tiles/nobuild.c",
+        "output": "/home/kyle/Documents/wang-tiles/nobuild"
+    }
+]
