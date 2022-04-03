@@ -3,3 +3,4 @@
 /.vscode
 /nobuild
 /output.*
+compile_commands.json
