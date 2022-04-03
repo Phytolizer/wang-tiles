@@ -11,6 +11,8 @@ const char* sources[] = {
 #define CFLAGS "-Wall", "-Wextra", "-Wpedantic", "-std=c99"
 
 int main(int argc, char** argv) {
+    REBUILD_SELF(argc, argv);
+
     MKDIRS("build", "obj");
     const char** objects = malloc(sizeof(char*) * (sizeof sources / sizeof *sources + 1));
     size_t i = 0;

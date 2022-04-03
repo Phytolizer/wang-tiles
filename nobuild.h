@@ -50,6 +50,27 @@
         } \
     } while (false)
 
+#define REBUILD_SELF(argc, argv) \
+    do { \
+        const char* source_path = __FILE__; \
+        const char* binary_path = argv[0]; \
+        struct stat statbuf; \
+        if (stat(source_path, &statbuf) < 0) { \
+            fprintf(stderr, "Could not stat %s: %s\n", source_path, strerror(errno)); \
+        } \
+        int source_mtime = statbuf.st_mtime; \
+        if (stat(binary_path, &statbuf) < 0) { \
+            fprintf(stderr, "Could not stat %s: %s\n", binary_path, strerror(errno)); \
+        } \
+        int binary_mtime = statbuf.st_mtime; \
+        if (source_mtime > binary_mtime) { \
+            rename(binary_path, CONCAT(binary_path, ".old")); \
+            CMD("cc", source_path, "-o", binary_path); \
+            echo_cmd(argv); \
+            nobuild_exec(argv); \
+        } \
+    } while (false)
+
 const char* vconcat_sep_impl(const char* sep, va_list args) {
     size_t length = 0;
     int64_t seps = -1;

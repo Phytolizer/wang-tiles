@@ -2,5 +2,6 @@
 /build
 /.vscode
 /nobuild
+/nobuild.old
 /output.*
 compile_commands.json
