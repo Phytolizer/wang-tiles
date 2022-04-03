@@ -34,8 +34,8 @@
 
 #define FOREACH_ARRAY(type, item, items, body) \
     do { \
-        for (size_t i = 0; i < sizeof(items) / sizeof(type); i++) { \
-            type item = (items)[i]; \
+        for (size_t i_ = 0; i_ < sizeof(items) / sizeof(type); i_++) { \
+            type item = (items)[i_]; \
             body; \
         } \
     } while (false)
@@ -173,6 +173,14 @@ void nobuild_exec(char** argv) {
 #endif
 }
 
+void echo_cmd(char** argv) {
+    printf("[INFO]");
+    for (size_t i = 0; argv[i] != NULL; i++) {
+        printf(" %s", argv[i]);
+    }
+    printf("\n");
+}
+
 void cmd_impl(int ignore, ...) {
     size_t argc = 0;
 
@@ -198,3 +206,52 @@ void cmd_impl(int ignore, ...) {
 }
 
 #define CMD(...) cmd_impl(69, __VA_ARGS__, NULL)
+
+char** collect_args(char* fmt, ...) {
+    size_t length = 0;
+    va_list args;
+    va_start(args, fmt);
+    size_t fmtlen = strlen(fmt);
+    for (size_t i = 0; i < fmtlen; i++) {
+        switch (fmt[i]) {
+            case 'v':
+                (void)va_arg(args, char*);
+                length += 1;
+                break;
+            case 'p': {
+                char** argv = va_arg(args, char**);
+                while (*argv != NULL) {
+                    length += 1;
+                    argv++;
+                }
+            } break;
+            default:
+                assert(false && "illegal format character");
+        }
+    }
+    va_end(args);
+
+    char** result = malloc(sizeof(char*) * (length + 1));
+    va_start(args, fmt);
+    size_t j = 0;
+    for (size_t i = 0; i < fmtlen; i++) {
+        switch (fmt[i]) {
+            case 'v':
+                result[j] = va_arg(args, char*);
+                j++;
+                break;
+            case 'p': {
+                char** temp = va_arg(args, char**);
+                while (*temp != NULL) {
+                    result[j] = *temp;
+                    j++;
+                    temp++;
+                }
+            } break;
+        }
+    }
+    va_end(args);
+    result[j] = NULL;
+
+    return result;
+}

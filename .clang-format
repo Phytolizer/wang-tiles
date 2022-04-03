@@ -9,3 +9,4 @@ AlignOperands: false
 AlignAfterOpenBracket: false
 IncludeBlocks: Regroup
 AlignEscapedNewlines: DontAlign
+IndentCaseLabels: true
