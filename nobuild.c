@@ -8,13 +8,15 @@ const char* sources[] = {
         "wang",
 };
 
+#define CFLAGS "-Wall", "-Wextra", "-Wpedantic", "-std=c99"
+
 int main(void) {
     MKDIRS("build", "obj");
     const char** objects = malloc(sizeof(char*) * (sizeof sources / sizeof *sources + 1));
     size_t i = 0;
     FOREACH_ARRAY(const char*, source, sources, {
         objects[i] = PATH("build", "obj", CONCAT(source, ".o"));
-        CMD("cc", "-c", CONCAT(source, ".c"), "-o", objects[i]);
+        CMD("cc", CFLAGS, "-c", CONCAT(source, ".c"), "-o", objects[i]);
         i++;
     });
     objects[i] = NULL;
