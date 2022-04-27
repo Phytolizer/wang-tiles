@@ -7,7 +7,7 @@ const
   WIDTH = 512
   HEIGHT = 512
 
-proc frag(u, v: float): tuple[r: float, g: float, b: float] =
+proc stripes(u, v: float): tuple[r: float, g: float, b: float] =
   const N = 2
   return (
     (sin(u * N) + 1) / 2,
@@ -25,7 +25,7 @@ proc main =
     for x in 0..<WIDTH:
       let u = x / WIDTH
       let v = y / HEIGHT
-      let (r, g, b) = frag(u, v)
+      let (r, g, b) = stripes(u, v)
       f.write(chr(int(r * 255)))
       f.write(chr(int(g * 255)))
       f.write(chr(int(b * 255)))
