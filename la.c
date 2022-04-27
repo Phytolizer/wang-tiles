@@ -31,11 +31,15 @@ typedef struct {
 } Vec4f;
 
 typedef Vec3f RGB;
+typedef Vec4f RGBA;
+typedef Vec2f UV;
 
 Vec2f vec2f(float x, float y) {
 	Vec2f v = {{x, y}};
 	return v;
 }
+
+///////////////////////////
 
 Vec2f vec2fs(float x) {
 	return vec2f(x, x);
