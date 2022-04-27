@@ -115,3 +115,177 @@ Vec2f vec2f_pow(Vec2f b, Vec2f e) {
 	}
 	return b;
 }
+
+///////////////////////////
+
+Vec3f vec3f(float x, float y, float z) {
+	Vec3f v = {{x, y, z}};
+	return v;
+}
+
+Vec3f vec3fs(float x) {
+	return vec3f(x, x, x);
+}
+
+Vec3f vec3f_sum(Vec3f a, Vec3f b) {
+	for (size_t i = 0; i < 3; i++) {
+		a.c[i] += b.c[i];
+	}
+	return a;
+}
+
+Vec3f vec3f_sub(Vec3f a, Vec3f b) {
+	for (size_t i = 0; i < 3; i++) {
+		a.c[i] -= b.c[i];
+	}
+	return a;
+}
+
+Vec3f vec3f_mul(Vec3f a, Vec3f b) {
+	for (size_t i = 0; i < 3; i++) {
+		a.c[i] *= b.c[i];
+	}
+	return a;
+}
+
+Vec3f vec3f_div(Vec3f a, Vec3f b) {
+	for (size_t i = 0; i < 3; i++) {
+		a.c[i] /= b.c[i];
+	}
+	return a;
+}
+
+Vec3f vec3f_max(Vec3f a, Vec3f b) {
+	for (size_t i = 0; i < 3; i++) {
+		if (a.c[i] < b.c[i]) {
+			a.c[i] = b.c[i];
+		}
+	}
+	return a;
+}
+
+Vec3f vec3f_min(Vec3f a, Vec3f b) {
+	for (size_t i = 0; i < 3; i++) {
+		if (a.c[i] > b.c[i]) {
+			a.c[i] = b.c[i];
+		}
+	}
+	return a;
+}
+
+float vec3f_sqrlen(Vec3f a) {
+	float sqr_len = 0.0F;
+	for (size_t i = 0; i < 3; i++) {
+		sqr_len += a.c[i] * a.c[i];
+	}
+	return sqr_len;
+}
+
+Vec3f vec3f_lerp(Vec3f a, Vec3f b, Vec3f t) {
+	for (size_t i = 0; i < 3; i++) {
+		a.c[i] = lerpf(a.c[i], b.c[i], t.c[i]);
+	}
+	return a;
+}
+
+Vec3f vec3f_sqrt(Vec3f a) {
+	for (size_t i = 0; i < 3; i++) {
+		a.c[i] = sqrtf(a.c[i]);
+	}
+	return a;
+}
+
+Vec3f vec3f_pow(Vec3f b, Vec3f e) {
+	for (size_t i = 0; i < 3; i++) {
+		b.c[i] = powf(b.c[i], e.c[i]);
+	}
+	return b;
+}
+
+///////////////////////////
+
+Vec4f vec4f(float x, float y, float z, float w) {
+	Vec4f v = {{x, y, z, w}};
+	return v;
+}
+
+Vec4f vec4fs(float x) {
+	return vec4f(x, x, x, x);
+}
+
+Vec4f vec4f_sum(Vec4f a, Vec4f b) {
+	for (size_t i = 0; i < 4; i++) {
+		a.c[i] += b.c[i];
+	}
+	return a;
+}
+
+Vec4f vec4f_sub(Vec4f a, Vec4f b) {
+	for (size_t i = 0; i < 4; i++) {
+		a.c[i] -= b.c[i];
+	}
+	return a;
+}
+
+Vec4f vec4f_mul(Vec4f a, Vec4f b) {
+	for (size_t i = 0; i < 4; i++) {
+		a.c[i] *= b.c[i];
+	}
+	return a;
+}
+
+Vec4f vec4f_div(Vec4f a, Vec4f b) {
+	for (size_t i = 0; i < 4; i++) {
+		a.c[i] /= b.c[i];
+	}
+	return a;
+}
+
+Vec4f vec4f_max(Vec4f a, Vec4f b) {
+	for (size_t i = 0; i < 4; i++) {
+		if (a.c[i] < b.c[i]) {
+			a.c[i] = b.c[i];
+		}
+	}
+	return a;
+}
+
+Vec4f vec4f_min(Vec4f a, Vec4f b) {
+	for (size_t i = 0; i < 4; i++) {
+		if (a.c[i] > b.c[i]) {
+			a.c[i] = b.c[i];
+		}
+	}
+	return a;
+}
+
+float vec4f_sqrlen(Vec4f a) {
+	float sqr_len = 0.0F;
+	for (size_t i = 0; i < 4; i++) {
+		sqr_len += a.c[i] * a.c[i];
+	}
+	return sqr_len;
+}
+
+Vec4f vec4f_lerp(Vec4f a, Vec4f b, Vec4f t) {
+	for (size_t i = 0; i < 4; i++) {
+		a.c[i] = lerpf(a.c[i], b.c[i], t.c[i]);
+	}
+	return a;
+}
+
+Vec4f vec4f_sqrt(Vec4f a) {
+	for (size_t i = 0; i < 4; i++) {
+		a.c[i] = sqrtf(a.c[i]);
+	}
+	return a;
+}
+
+Vec4f vec4f_pow(Vec4f b, Vec4f e) {
+	for (size_t i = 0; i < 4; i++) {
+		b.c[i] = powf(b.c[i], e.c[i]);
+	}
+	return b;
+}
+
+///////////////////////////
