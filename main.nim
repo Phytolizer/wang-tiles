@@ -1,13 +1,19 @@
 import std/[
+  math,
   strformat,
 ]
 
 const
-  WIDTH = 128
-  HEIGHT = 128
+  WIDTH = 512
+  HEIGHT = 512
 
 proc frag(u, v: float): tuple[r: float, g: float, b: float] =
-  return (u, v, 0.0)
+  const N = 2
+  return (
+    (sin(u * N) + 1) / 2,
+    (sin((u + v) * N) + 1) / 2,
+    (cos(v * N) + 1) / 2,
+  )
 
 proc main =
   let f = open("output.ppm", fmWrite)
