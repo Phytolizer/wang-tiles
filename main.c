@@ -1,7 +1,8 @@
-#define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "./la.c"
-#include "stb_image_write.h"
 
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#include <stb_image_write.h>
+#include <stdbool.h>
 #include <stdint.h>
 
 #define TILE_WIDTH 128
@@ -16,6 +17,12 @@ static RGB stripes(UV uv) {
 	const float n = 20.0F;
 	Vec3f v = vec3f(sinf(uv.c[C_U] * n), sinf((uv.c[C_U] + uv.c[C_V]) * n), cosf(uv.c[C_V] * n));
 	return vec3f_mul(vec3f_sum(v, vec3fs(1.0F)), vec3fs(0.5F));
+}
+
+static RGB japan(UV uv) {
+	float r = 0.25F;
+	bool a = vec2f_sqrlen(vec2f_sub(vec2fs(0.5F), uv)) > r * r;
+	return vec3f(1.0F, (float)a, (float)a);
 }
 
 static RGBA32 make_rgba32(float r, float g, float b) {
@@ -38,7 +45,7 @@ static void generate_image32(
 RGBA32 tile[TILE_WIDTH * TILE_HEIGHT];
 
 int main(void) {
-	generate_image32(tile, TILE_WIDTH, TILE_HEIGHT, TILE_WIDTH, stripes);
+	generate_image32(tile, TILE_WIDTH, TILE_HEIGHT, TILE_WIDTH, japan);
 	if (!stbi_write_png(
 				"output.png", TILE_WIDTH, TILE_HEIGHT, 4, tile, TILE_WIDTH * sizeof(RGBA32))) {
 		fprintf(stderr, "Failed to write output.png\n");
