@@ -99,6 +99,10 @@ float vec2f_sqrlen(Vec2f a) {
 	return sqr_len;
 }
 
+float vec2f_len(Vec2f a) {
+	return sqrtf(vec2f_sqrlen(a));
+}
+
 Vec2f vec2f_lerp(Vec2f a, Vec2f b, Vec2f t) {
 	for (size_t i = 0; i < 2; i++) {
 		a.c[i] = lerpf(a.c[i], b.c[i], t.c[i]);
@@ -185,6 +189,10 @@ float vec3f_sqrlen(Vec3f a) {
 	return sqr_len;
 }
 
+float vec3f_len(Vec3f a) {
+	return sqrtf(vec3f_sqrlen(a));
+}
+
 Vec3f vec3f_lerp(Vec3f a, Vec3f b, Vec3f t) {
 	for (size_t i = 0; i < 3; i++) {
 		a.c[i] = lerpf(a.c[i], b.c[i], t.c[i]);
@@ -269,6 +277,10 @@ float vec4f_sqrlen(Vec4f a) {
 		sqr_len += a.c[i] * a.c[i];
 	}
 	return sqr_len;
+}
+
+float vec4f_len(Vec4f a) {
+	return sqrtf(vec4f_sqrlen(a));
 }
 
 Vec4f vec4f_lerp(Vec4f a, Vec4f b, Vec4f t) {
