@@ -39,5 +39,9 @@ RGBA32 tile[TILE_WIDTH * TILE_HEIGHT];
 
 int main(void) {
 	generate_image32(tile, TILE_WIDTH, TILE_HEIGHT, TILE_WIDTH, stripes);
-	stbi_write_png("tile.png", TILE_WIDTH, TILE_HEIGHT, 4, tile, TILE_WIDTH * 4);
+	if (!stbi_write_png(
+				"output.png", TILE_WIDTH, TILE_HEIGHT, 4, tile, TILE_WIDTH * sizeof(RGBA32))) {
+		fprintf(stderr, "Failed to write output.png\n");
+		return 1;
+	}
 }
