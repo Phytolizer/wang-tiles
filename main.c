@@ -5,8 +5,8 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-#define TILE_WIDTH 128
-#define TILE_HEIGHT 128
+#define TILE_WIDTH 512
+#define TILE_HEIGHT 512
 #define TILESET_WIDTH (TILE_WIDTH * 4)
 #define TILESET_HEIGHT (TILE_HEIGHT * 4)
 
